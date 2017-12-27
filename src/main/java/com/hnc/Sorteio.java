@@ -1,8 +1,5 @@
 package com.hnc;
 
-import org.telegram.telegrambots.api.objects.Update;
-import org.telegram.telegrambots.bots.TelegramLongPollingBot;
-
 import java.util.ArrayList;
 
 /**
@@ -12,19 +9,19 @@ public class Sorteio {
 
     private static Sorteio sorteio;
 
-
     private ArrayList<String> listaDePessoas;
 
-    private Sorteio(){
+    private Sorteio() {
         listaDePessoas = new ArrayList<>();
+        
     }
 
     public String getMensagemRandom() {
-        int sorte = (int) ( Math.random() * ( listaDePessoas.size() - 1 ) );
-        return listaDePessoas.get( sorte );
+        int sorte = (int) (Math.random() * (listaDePessoas.size() - 1));
+        return listaDePessoas.get(sorte);
     }
 
-    public void addPessoa(String nome){
+    public void addPessoa(String nome) {
         if (!listaDePessoas.contains(nome)) {
             listaDePessoas.add(nome);
         }
@@ -32,24 +29,19 @@ public class Sorteio {
 
     public String getLista() {
         StringBuffer sb = new StringBuffer();
-
         sb.append("Pessoas que estão no sorteio:");
         for (String nome : listaDePessoas) {
             sb.append("\n");
             sb.append("@");
             sb.append(nome);
         }
-
         return sb.toString();
     }
 
-
-    public static Sorteio getSorteio(){
-        if(sorteio == null){
+    public static Sorteio getSorteio() {
+        if (sorteio == null) {
             sorteio = new Sorteio();
         }
         return sorteio;
     }
-
-
 }
